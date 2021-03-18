@@ -1,0 +1,17 @@
+{
+  "name": "search-page",
+  "version": "1.0.0",
+  "description": "Only use Valila JS project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "http-server ./"
+  },
+  "author": "Yunadev",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/core": "^7.13.8",
+    "@babel/preset-env": "^7.13.9",
+    "http-server": "^0.12.3"
+  }
+}
