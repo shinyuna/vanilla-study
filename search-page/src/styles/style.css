@@ -6,6 +6,14 @@ body {
   box-sizing: border-box;
 }
 
+:root {
+  --sm: 0.875rem;
+  --lg: 1.125rem;
+  --xl: 1.25rem;
+  --xxl: 1.375rem;
+  --xxxl: 1.5rem;
+}
+
 .header {
   padding: 20px 40px;
 }
@@ -23,11 +31,11 @@ body {
   color: #fff;
 }
 .loading__txt {
-  font-size: 1.5rem;
+  font-size: var(--xxxl);
   line-height: 3rem;
 }
 .loading__txt-sub {
-  font-size: 1.2rem;
+  font-size: var(--lg);
 }
 
 .search__form {
@@ -45,11 +53,11 @@ input {
   background: transparent;
 }
 .search__form-btn {
-  font-size: 1.2rem;
+  font-size: var(--xl);
   cursor: pointer;
 }
 .search__keyword p {
-  font-size: 0.9rem;
+  font-size: var(--sm);
   font-weight: 600;
   margin: 20px 0;
 }
@@ -69,6 +77,7 @@ input {
   padding: 20px 40px;
 }
 .wrapper__item {
+  position: relative;
   width: 100%;
   height: 320px;
 }
@@ -76,4 +85,25 @@ input {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+.wrapper__item:hover > .cover {
+  cursor: pointer;
+  opacity: 1;
+}
+.wrapper__item .cover {
+  opacity: 0;
+  display: flex;
+  position: absolute;
+  align-items: flex-end;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  background: -moz-linear-gradient(180deg, rgba(0, 212, 255, 0) 0%, rgba(0, 0, 0, 0.5) 50%, rgba(2, 0, 0, 0.8) 100%);
+  background: -webkit-linear-gradient(180deg, rgba(0, 212, 255, 0) 0%, rgba(0, 0, 0, 0.5) 50%, rgba(2, 0, 0, 0.8) 100%);
+  background: linear-gradient(180deg, rgba(0, 212, 255, 0) 0%, rgba(0, 0, 0, 0.5) 50%, rgba(2, 0, 0, 0.8) 100%);
+}
+.wrapper__item .cover p {
+  font-size: var(--xl);
+  color: #fff;
 }

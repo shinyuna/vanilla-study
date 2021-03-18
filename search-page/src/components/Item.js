@@ -10,7 +10,7 @@ export class Item extends Component {
           catList
             .map(
               item =>
-                `<article class="wrapper__item"><img src="${item.url}" alt="${item.name}" id="${item.id}" /></article>`
+                `<article class="wrapper__item"><div class="cover"><p>${item.name}</p></div><img src="${item.url}" alt="${item.name}" id="${item.id}" /></article>`
             )
             .join('')
         }
