@@ -42,10 +42,18 @@ export default class App extends Component {
     }
   }
 
+  setStorage(key, item) {
+    window.sessionStorage.setItem(key, JSON.stringify(item));
+  }
+  getStorage(item) {
+    const result = window.sessionStorage.getItem(item);
+    return result && JSON.parse(result);
+  }
+
   async searchCats(searchData) {
     try {
       this.setState({ isLoading: true });
-      const { data: cats } = await API.getSearchCats(searchData);
+      const { data: cats } = await API.getCats(searchData);
       if (!cats || cats.length === 0) {
         this.setState({
           isLoading: false,
@@ -70,20 +78,11 @@ export default class App extends Component {
     }
   }
 
-  setStorage(key, item) {
-    window.sessionStorage.setItem(key, JSON.stringify(item));
-  }
-  getStorage(item) {
-    const result = window.sessionStorage.getItem(item);
-    return result && JSON.parse(result);
-  }
-
   updateSearchKeyword(keyword) {
     const state = this.$state.latelySearchKeyword;
     const index = state.indexOf(keyword);
 
     if (index > -1) {
-      console.log(index, keyword);
       state.splice(index, index + 1);
     }
     if (state.length > 4) {
