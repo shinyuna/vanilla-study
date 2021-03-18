@@ -3,11 +3,13 @@ import ItemSearch from './components/ItemSearch.js';
 import { API } from './api/index.js';
 import { ItemLoading } from './components/ItemLoading.js';
 import { Item } from './components/Item.js';
+import { ItemRandom } from './components/ItemRandom.js';
 
 export default class App extends Component {
   setup() {
     this.$state = {
       catList: this.getStorage('last_search') || [],
+      randomList: [],
       isLoading: false,
       noticeMessage: '',
       latelySearchKeyword: this.getStorage('search_keyword') || [],
@@ -17,19 +19,27 @@ export default class App extends Component {
   template() {
     return `
       <header data-component="item-header" class="header"></header>
-      <main data-component="item-main"></main>
+      <main>
+        <section data-component="item-slide" class="slide"></section>
+        <section data-component="item-main" class="wrapper"></section>
+      </main>
       <div data-component="item-modal"></div>
     `;
   }
 
   mounted() {
     const $itemHeader = this.$target.querySelector('[data-component="item-header"]');
+    const $itemSlide = this.$target.querySelector('[data-component="item-slide"]');
     const $itemMain = this.$target.querySelector('[data-component="item-main"]');
     const $itemModal = this.$target.querySelector('[data-component="item-modal"]');
 
     new ItemSearch($itemHeader, {
       searchCats: this.searchCats.bind(this),
       latelySearchKeyword: this.$state.latelySearchKeyword,
+    });
+
+    new ItemRandom($itemSlide, {
+      randomList: this.$state.randomList,
     });
 
     new Item($itemMain, {
@@ -42,12 +52,28 @@ export default class App extends Component {
     }
   }
 
+  setEvent() {
+    this.getRandom();
+  }
+
   setStorage(key, item) {
     window.sessionStorage.setItem(key, JSON.stringify(item));
   }
   getStorage(item) {
     const result = window.sessionStorage.getItem(item);
     return result && JSON.parse(result);
+  }
+
+  async getRandom() {
+    try {
+      const randomList = this.$state.randomList;
+      const { data } = await API.randomCats();
+      this.setState({
+        randomList: [data, ...randomList],
+      });
+    } catch (error) {
+      console.log('🚀 ~ getRandom ~ error', error);
+    }
   }
 
   async searchCats(searchData) {
