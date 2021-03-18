@@ -83,7 +83,7 @@ export default class App extends Component {
     const index = state.indexOf(keyword);
 
     if (index > -1) {
-      state.splice(index, index + 1);
+      state.splice(index, 1);
     }
     if (state.length > 4) {
       state.shift();
