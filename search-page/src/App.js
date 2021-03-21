@@ -68,7 +68,7 @@ export default class App extends Component {
       const randomList = this.$state.randomList;
       const { data } = await API.randomCats();
       this.setState({
-        randomList: [data, ...randomList],
+        randomList: [...randomList, ...data],
       });
     } catch (error) {
       console.log('🚀 ~ getRandom ~ error', error);
