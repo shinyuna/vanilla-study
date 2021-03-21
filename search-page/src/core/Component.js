@@ -6,10 +6,12 @@ export default class Component {
     this.$target = $target;
     this.$props = $props;
     this.setup();
+    this.created();
     this.render();
     this.setEvent();
   }
   setup() {}
+  created() {}
   mounted() {}
   template() {
     return '';

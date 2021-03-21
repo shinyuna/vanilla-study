@@ -26,6 +26,9 @@ export default class App extends Component {
       <div data-component="item-modal"></div>
     `;
   }
+  created() {
+    this.getRandom();
+  }
 
   mounted() {
     const $itemHeader = this.$target.querySelector('[data-component="item-header"]');
@@ -50,10 +53,6 @@ export default class App extends Component {
     if (this.$state.isLoading) {
       new ItemLoading($itemModal);
     }
-  }
-
-  setEvent() {
-    this.getRandom();
   }
 
   setStorage(key, item) {
