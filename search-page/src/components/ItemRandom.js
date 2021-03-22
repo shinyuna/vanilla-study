@@ -17,7 +17,7 @@ export class ItemRandom extends Component {
                   .map(
                     item => `
                 <li id="${item.id}" class="slider__list-item">
-                  <img src="${item.url}" alt="item.name"/>
+                  <img src="${item.url}" loading="lazy" alt="item.name"/>
                 </li>
                 `
                   )
@@ -30,12 +30,16 @@ export class ItemRandom extends Component {
 
   setEvent() {
     const { randomList } = this.$props;
+    randomList.length !== 0 && this.slideAnimation(randomList);
+  }
+
+  slideAnimation(list) {
     const prev = this.$target.querySelector('.slider__btn .prev');
     const next = this.$target.querySelector('.slider__btn .next');
     const slider = this.$target.querySelector('.slider__box .slider__list');
     const firstChild = slider.firstElementChild.cloneNode(true);
     const lastChild = slider.lastElementChild.cloneNode(true);
-    const length = randomList.length;
+    const length = list.length;
     const size = 330;
     let count = 1;
 

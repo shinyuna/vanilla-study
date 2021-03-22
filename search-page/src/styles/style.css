@@ -85,6 +85,9 @@ input {
   position: relative;
   width: 100%;
   height: 320px;
+  border-radius: 0.5rem;
+  background-color: #f1f3f4;
+  overflow: hidden;
 }
 .wrapper__item img {
   width: 100%;
@@ -142,8 +145,7 @@ input {
   display: flex;
 }
 .slider__list-txt {
-  width: 100%;
-  text-align: center;
+  transform: translateX(-350px);
   font-size: var(--xxl);
   line-height: 200px;
 }
