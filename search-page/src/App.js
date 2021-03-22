@@ -20,7 +20,7 @@ export default class App extends Component {
     return `
       <header data-component="item-header" class="header"></header>
       <main>
-        <section data-component="item-slide" class="slide"></section>
+        <section data-component="item-slide" class="slider"></section>
         <section data-component="item-main" class="wrapper"></section>
       </main>
       <div data-component="item-modal"></div>
