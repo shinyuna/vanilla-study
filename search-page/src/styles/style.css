@@ -12,6 +12,9 @@ body {
   --xl: 1.25rem;
   --xxl: 1.375rem;
   --xxxl: 1.5rem;
+  --slide-height: 200px;
+  --light-color: #fce7f3;
+  --point-color: #ec4899;
 }
 
 .header {
@@ -46,6 +49,9 @@ body {
   padding: 10px 15px;
   max-width: 720px;
 }
+button {
+  cursor: pointer;
+}
 button,
 input {
   outline: none;
@@ -54,7 +60,6 @@ input {
 }
 .search__form-btn {
   font-size: var(--xl);
-  cursor: pointer;
 }
 .search__keyword p {
   font-size: var(--sm);
@@ -63,8 +68,8 @@ input {
 }
 .search__keyword-box-item {
   border-radius: 30px;
-  background-color: #e0e7ff;
-  color: #6366f1;
+  background-color: var(--light-color);
+  color: var(--point-color);
   padding: 7px 14px;
   margin-right: 10px;
   cursor: pointer;
@@ -111,34 +116,47 @@ input {
 .slider {
   position: relative;
   height: auto;
-  padding: 2rem 4rem;
+  padding: 2rem;
 }
 .slider__btn button {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
+  font-size: 2rem;
+  color: var(--point-color);
 }
 .slider__btn button.prev {
-  left: 8rem;
+  left: 2rem;
 }
 .slider__btn button.next {
-  right: 8rem;
+  right: 2rem;
 }
 .slider__box {
-  display: flex;
-  width: calc(280px * 5);
+  width: calc((330px * 5) - 30px);
+  height: var(--slide-height);
   overflow: hidden;
   margin: 0 auto;
 }
-.slider__item {
-  width: 250px;
-  height: 200px;
+.slider__list {
+  transform: translateX(-330px);
+  display: flex;
+}
+.slider__list-txt {
+  width: 100%;
+  text-align: center;
+  font-size: var(--xxl);
+  line-height: 200px;
+}
+.slider__list-item {
+  width: 300px;
+  height: var(--slide-height);
   flex-shrink: 0;
   margin-right: 30px;
   border-radius: 0.5rem;
+  background-color: #f1f3f4;
   overflow: hidden;
 }
-.slider__item img {
+.slider__list-item img {
   width: 100%;
   height: 100%;
   object-fit: cover;
