@@ -6,7 +6,7 @@ export default class ItemSearch extends Component {
     return `
       <form class="search__form">
         <button type="submit" class="search__form-btn">🔎</button>
-        <input type="text" class="search__form-input" placeholder="고양이를 검색해주라 냥 😸" autofocus="true" />
+        <input type="text" class="search__form-input" placeholder="고양이를 검색해주라 냥 😸"/>
       </form>
       ${keywords && keywords.length ? this.keywordUI(keywords) : ''}
     `;
@@ -25,6 +25,7 @@ export default class ItemSearch extends Component {
     const { searchCats } = this.$props;
     const input = this.$target.querySelector('.search__form-input');
 
+    input.focus();
     this.$target.addEventListener('click', async e => {
       e.preventDefault();
       if (e.target.className === 'search__form-btn') {

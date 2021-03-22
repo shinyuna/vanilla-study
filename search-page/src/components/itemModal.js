@@ -20,7 +20,6 @@ export class itemModal extends Component {
 
   setEvent() {
     const { closeModal } = this.$props;
-    document.documentElement.style.setProperty('--modal-opacity', 1);
     this.$target.addEventListener('click', e => {
       if (e.target.className === 'modal' || e.target.className === 'detail-close') {
         closeModal(false);
@@ -31,5 +30,6 @@ export class itemModal extends Component {
         closeModal(false);
       }
     });
+    document.documentElement.style.setProperty('--modal-opacity', 1);
   }
 }
