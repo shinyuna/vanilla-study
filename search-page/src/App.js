@@ -4,6 +4,7 @@ import { API } from './api/index.js';
 import { ItemLoading } from './components/ItemLoading.js';
 import { Item } from './components/Item.js';
 import { ItemRandom } from './components/ItemRandom.js';
+import { itemModal } from './components/itemModal.js';
 
 export default class App extends Component {
   setup() {
@@ -11,6 +12,8 @@ export default class App extends Component {
       catList: this.getStorage('last_search') || [],
       randomList: [],
       isLoading: false,
+      isModal: false,
+      catInfo: null,
       noticeMessage: '',
       latelySearchKeyword: this.getStorage('search_keyword') || [],
     };
@@ -50,9 +53,24 @@ export default class App extends Component {
       noticeMessage: this.$state.noticeMessage,
     });
 
+    if (this.$state.isModal && this.$state.catInfo) {
+      new itemModal($itemModal, {
+        catInfo: this.$state.catInfo,
+        closeModal: this.closeModal.bind(this),
+      });
+    }
+
     if (this.$state.isLoading) {
       new ItemLoading($itemModal);
     }
+  }
+
+  setEvent() {
+    this.$target.addEventListener('click', e => {
+      if (e.target.nodeName !== 'IMG' || !e.target.id) return;
+      const id = e.target.parentNode.id;
+      this.getCatInfo(id);
+    });
   }
 
   setStorage(key, item) {
@@ -61,6 +79,13 @@ export default class App extends Component {
   getStorage(item) {
     const result = window.sessionStorage.getItem(item);
     return result && JSON.parse(result);
+  }
+
+  closeModal(isShow) {
+    this.setState({
+      isModal: isShow,
+      catInfo: null,
+    });
   }
 
   async getRandom() {
@@ -72,6 +97,22 @@ export default class App extends Component {
       });
     } catch (error) {
       console.log('🚀 ~ getRandom ~ error', error);
+    }
+  }
+
+  async getCatInfo(id) {
+    try {
+      this.setState({
+        isLoading: true,
+      });
+      const { data } = await API.getCat(id);
+      this.setState({
+        catInfo: data,
+        isLoading: false,
+        isModal: true,
+      });
+    } catch (error) {
+      console.log('🚀 ~ getCatInfo ~ error', error);
     }
   }
 

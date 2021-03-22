@@ -17,7 +17,7 @@ export class ItemRandom extends Component {
                   .map(
                     item => `
                 <li id="${item.id}" class="slider__list-item">
-                  <img src="${item.url}" loading="lazy" alt="item.name"/>
+                  <img src="${item.url}" loading="lazy" alt="${item.name}"/>
                 </li>
                 `
                   )
