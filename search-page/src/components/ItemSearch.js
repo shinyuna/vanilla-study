@@ -3,6 +3,7 @@ import Component from '../core/Component.js';
 export default class ItemSearch extends Component {
   template() {
     const { latelySearchKeyword: keywords } = this.$props;
+    const theme = document.documentElement.getAttribute('color-theme') === 'dark' ? true : false;
     return `
       <div class="search">
         <form class="search__form">
@@ -12,7 +13,7 @@ export default class ItemSearch extends Component {
         ${keywords && keywords.length ? this.keywordUI(keywords) : ''}
       </div>
       <label for="darkmode" class="darkmode-switch">
-        <input type="checkbox" id="darkmode"/>
+        <input type="checkbox" id="darkmode" ${theme && 'checked'} />
         <span class="toggle"></span>
       </label>
     `;

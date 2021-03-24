@@ -112,6 +112,9 @@ input {
 .search__form-btn {
   font-size: var(--xl);
 }
+.search__form-input {
+  color: var(--font-color);
+}
 .search__keyword p {
   font-size: var(--sm);
   font-weight: 600;
