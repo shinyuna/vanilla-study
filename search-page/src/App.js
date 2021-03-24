@@ -82,6 +82,7 @@ export default class App extends Component {
   }
 
   closeModal(isShow) {
+    document.documentElement.style.setProperty('--modal-scroll', 'auto');
     this.setState({
       isModal: isShow,
       catInfo: null,

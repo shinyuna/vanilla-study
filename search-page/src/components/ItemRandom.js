@@ -5,23 +5,23 @@ export class ItemRandom extends Component {
     const { randomList } = this.$props;
     return `
       <div class="slider__btn">
-      <button class="prev">⬅</button>
-      <button class="next">➡</button>
+        <button class="prev">⬅</button>
+        <button class="next">➡</button>
       </div>
       <div class="slider__box">
+        ${randomList.length === 0 ? `<p class="slider__list-txt">🐈  곧 50 냥이가 도착한다 냥 🐈</p>` : ''}
         <ul class="slider__list">
           ${
-            randomList.length === 0
-              ? `<p class="slider__list-txt">🐈  곧 50 냥이가 도착한다 냥 🐈</p>`
-              : randomList
-                  .map(
-                    item => `
+            randomList &&
+            randomList
+              .map(
+                item => `
                 <li id="${item.id}" class="slider__list-item">
                   <img src="${item.url}" loading="lazy" alt="${item.name}"/>
                 </li>
                 `
-                  )
-                  .join('')
+              )
+              .join('')
           }
         </ul>
       </div>
