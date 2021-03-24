@@ -1,3 +1,26 @@
+:root {
+  --sm: 0.875rem;
+  --lg: 1.125rem;
+  --xl: 1.25rem;
+  --xxl: 1.375rem;
+  --xxxl: 1.5rem;
+  --slide-height: 200px;
+  --modal-scroll: auto;
+  --white: #fff;
+  --point-light-color: #fce7f3;
+  --point-color: #ec4899;
+}
+:root[color-theme='light'] {
+  --background: #fff;
+  --font-color: #333;
+  --main-grey: #f1f3f4;
+}
+:root[color-theme='dark'] {
+  --background: #131313;
+  --font-color: #fff;
+  --main-grey: #2d2d2d;
+}
+
 *,
 html,
 body {
@@ -6,21 +29,21 @@ body {
   box-sizing: border-box;
 }
 
-:root {
-  --sm: 0.875rem;
-  --lg: 1.125rem;
-  --xl: 1.25rem;
-  --xxl: 1.375rem;
-  --xxxl: 1.5rem;
-  --slide-height: 200px;
-  --light-color: #fce7f3;
-  --point-color: #ec4899;
-  --modal-opacity: 0;
+body {
+  overflow: var(--modal-scroll);
+  background-color: var(--background);
+  color: var(--font-color);
+}
+button {
+  cursor: pointer;
+}
+button,
+input {
+  outline: none;
+  border: none;
+  background: transparent;
 }
 
-.header {
-  padding: 20px 40px;
-}
 .modal {
   display: flex;
   justify-content: center;
@@ -32,30 +55,30 @@ body {
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
+  overflow: hidden;
 }
 .loading__txt {
   font-size: var(--xxxl);
   line-height: 3rem;
-  color: #fff;
+  color: var(--white);
 }
 .loading__txt-sub {
   font-size: var(--lg);
-  color: #fff;
+  color: var(--white);
 }
 .detail {
   position: relative;
   width: 450px;
   height: 550px;
-  background-color: #fff;
+  background-color: var(--background);
   border-radius: 1rem;
-  opacity: var(--modal-opacity);
-  transition: opacity ease-in-out 0.5s;
 }
 .detail-close {
   position: absolute;
   top: 0.5rem;
   right: 0.5rem;
-  font-size: var(--lg);
+  font-size: 1rem;
+  color: var(--font-color);
 }
 .detail__info {
   padding: 3rem 2rem 2rem;
@@ -71,22 +94,20 @@ body {
   line-height: 2rem;
 }
 
+.header {
+  padding: 20px 40px;
+  display: flex;
+  justify-content: space-between;
+}
+.search {
+  width: 720px;
+}
 .search__form {
   display: grid;
   grid-template-columns: 1fr 90%;
-  background-color: #f1f3f4;
+  background-color: var(--main-grey);
   border-radius: 5px;
   padding: 10px 15px;
-  max-width: 720px;
-}
-button {
-  cursor: pointer;
-}
-button,
-input {
-  outline: none;
-  border: none;
-  background: transparent;
 }
 .search__form-btn {
   font-size: var(--xl);
@@ -98,7 +119,7 @@ input {
 }
 .search__keyword-box-item {
   border-radius: 30px;
-  background-color: var(--light-color);
+  background-color: var(--point-light-color);
   color: var(--point-color);
   padding: 7px 14px;
   margin-right: 10px;
@@ -116,7 +137,7 @@ input {
   width: 100%;
   height: 320px;
   border-radius: 0.5rem;
-  background-color: #f1f3f4;
+  background-color: var(--main-grey);
   overflow: hidden;
 }
 .wrapper__item img {
@@ -144,7 +165,7 @@ input {
 }
 .wrapper__item .cover p {
   font-size: var(--xl);
-  color: #fff;
+  color: var(--white);
 }
 
 .slider {
@@ -176,7 +197,7 @@ input {
   display: flex;
 }
 .slider__list-txt {
-  transform: translateX(-350px);
+  text-align: center;
   font-size: var(--xxl);
   line-height: 200px;
 }
@@ -186,11 +207,52 @@ input {
   flex-shrink: 0;
   margin-right: 30px;
   border-radius: 0.5rem;
-  background-color: #f1f3f4;
+  background-color: var(--main-grey);
   overflow: hidden;
 }
 .slider__list-item img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.darkmode-switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 30px;
+}
+.darkmode-switch input {
+  display: none;
+}
+.toggle {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--main-grey);
+  border-radius: 34px;
+  transition: 0.4s;
+  -webkit-transition: 0.4s;
+}
+
+.toggle:before {
+  content: '🌞';
+  position: absolute;
+  left: 4px;
+  bottom: 0px;
+  font-size: var(--xxl);
+  transition: 0.4s;
+  -webkit-transition: 0.4s;
+}
+input:checked + .toggle {
+  background-color: var(--main-grey);
+}
+input:checked + .toggle:before {
+  content: '🌝';
+  transform: translateX(20px);
+  -webkit-transform: translateX(20px);
+  -ms-transform: translateX(20px);
 }

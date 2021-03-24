@@ -31,6 +31,7 @@ export default class App extends Component {
   }
   created() {
     this.getRandom();
+    document.documentElement.setAttribute('color-theme', 'light');
   }
 
   mounted() {
