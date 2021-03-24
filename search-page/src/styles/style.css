@@ -69,7 +69,7 @@ input {
 .detail {
   position: relative;
   width: 450px;
-  height: 550px;
+  min-height: 550px;
   background-color: var(--background);
   border-radius: 1rem;
 }

@@ -68,8 +68,8 @@ export default class App extends Component {
 
   setEvent() {
     this.$target.addEventListener('click', e => {
-      if (e.target.nodeName !== 'IMG' || !e.target.id) return;
       const id = e.target.parentNode.id;
+      if (e.target.nodeName !== 'IMG' || !id) return;
       this.getCatInfo(id);
     });
   }
