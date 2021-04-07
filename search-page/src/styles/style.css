@@ -96,11 +96,12 @@ input {
 
 .header {
   padding: 20px 40px;
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  justify-items: end;
+  grid-template-columns: repeat(3, 1fr);
 }
 .search {
-  width: 720px;
+  width: 100%;
 }
 .search__form {
   display: grid;
@@ -221,7 +222,7 @@ input {
 
 .darkmode-switch {
   position: relative;
-  display: inline-block;
+  grid-column: 3/4;
   width: 50px;
   height: 30px;
 }
@@ -258,4 +259,15 @@ input:checked + .toggle:before {
   transform: translateX(20px);
   -webkit-transform: translateX(20px);
   -ms-transform: translateX(20px);
+}
+
+@media screen and (max-width: 1024px) {
+  .header,
+  .slider,
+  .wrapper {
+    padding: 20px;
+  }
+  .search {
+    grid-column: 1/3;
+  }
 }
