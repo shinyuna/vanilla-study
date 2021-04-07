@@ -98,15 +98,13 @@ export default class App extends Component {
         randomList: [...randomList, ...data],
       });
     } catch (error) {
-      console.log('🚀 ~ getRandom ~ error', error);
+      console.error(error);
     }
   }
 
   async getCatInfo(id) {
     try {
-      this.setState({
-        isLoading: true,
-      });
+      this.setState({ isLoading: true });
       const { data } = await API.getCat(id);
       this.setState({
         catInfo: data,
@@ -114,7 +112,7 @@ export default class App extends Component {
         isModal: true,
       });
     } catch (error) {
-      console.log('🚀 ~ getCatInfo ~ error', error);
+      console.error(error);
     }
   }
 
@@ -142,7 +140,7 @@ export default class App extends Component {
         isLoading: false,
         noticeMessage: '문제가 생겼다 냥, 다시 검색 부탁한다 냥 🙀',
       });
-      console.log('🚀 ~ searchCats ~ error', error);
+      console.error(error);
     }
   }
 
